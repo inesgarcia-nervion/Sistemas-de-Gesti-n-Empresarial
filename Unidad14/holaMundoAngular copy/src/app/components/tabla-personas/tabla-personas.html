@@ -1,0 +1,24 @@
+<!-- Lista Personas -->
+<table border="1">
+  <caption>Tabla Personas</caption>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+  </tr>
+  <tr *ngFor="let persona of personas">
+    <td>{{persona.id}}</td>
+    <td>{{persona.nombre}}</td>
+    <td>{{persona.apellido}}</td>
+  </tr>
+</table>
+
+
+<!-- Lista Personas con CSS de Heroes -->
+<h2>Listado de Personas</h2>
+<ul class="heroes">
+  <li *ngFor="let persona of personas">
+    <span class="badge">{{persona.id}}</span>
+    {{ persona.nombre }} {{ persona.apellido }}
+  </li>
+</ul>
