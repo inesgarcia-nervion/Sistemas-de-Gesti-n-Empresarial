@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Para que funcione *ngFor 
+import { RouterLink } from '@angular/router';
 
 interface Persona {
   id: number;
@@ -9,7 +10,7 @@ interface Persona {
 
 @Component({
   selector: 'app-tabla-personas',
-  imports: [CommonModule],        // Hay que importarlo 
+  imports: [CommonModule, RouterLink],
   templateUrl: './tabla-personas.html',
   styleUrl: './tabla-personas.css',
 })
