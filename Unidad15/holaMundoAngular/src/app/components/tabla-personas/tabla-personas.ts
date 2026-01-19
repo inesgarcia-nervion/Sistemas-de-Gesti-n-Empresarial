@@ -10,9 +10,10 @@ interface Persona {
 
 @Component({
   selector: 'app-tabla-personas',
+  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './tabla-personas.html',
-  styleUrl: './tabla-personas.css',
+  styleUrls: ['./tabla-personas.css'],
 })
 export class TablaPersonas {
   personas: Persona[] = [
