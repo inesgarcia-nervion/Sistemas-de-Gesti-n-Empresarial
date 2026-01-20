@@ -1,0 +1,19 @@
+<form [formGroup]="formulario">
+
+    <p>
+
+        <span>Nombre:</span>
+
+        <input type="text" id="nombre" formControlName="nombre"/>
+        <span *ngIf="(formulario?.controls?.['nombre']?.dirty || formulario?.controls?.['nombre']?.touched) && formulario?.controls?.['nombre']?.errors?.required" style="color:red">hash error</span>
+    </p>
+
+    <p>
+
+        <span>Apellidos:</span>
+
+        <input type="text" formControlName="apellidos"/>
+        <span *ngIf="(formulario?.controls?.['apellidos']?.dirty || formulario?.controls?.['apellidos']?.touched) && formulario?.controls?.['apellidos']?.errors?.required" style="color:red">hash error</span>
+    </p>
+        <button type="button" (click)="saluda()">Saludar</button>
+</form>

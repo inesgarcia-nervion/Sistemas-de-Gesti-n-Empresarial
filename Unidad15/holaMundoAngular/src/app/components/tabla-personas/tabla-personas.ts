@@ -16,6 +16,7 @@ interface Persona {
 @Component({
   selector: 'app-tabla-personas',
   standalone: true,
+<<<<<<< HEAD
   imports: [
     CommonModule,
     RouterLink,
@@ -25,6 +26,9 @@ interface Persona {
     MatCardModule,
     MatButtonModule,
   ],
+=======
+  imports: [CommonModule, RouterLink],
+>>>>>>> 463e6fbdb12dc32d99955f4ec7735d5754e24f54
   templateUrl: './tabla-personas.html',
   styleUrls: ['./tabla-personas.css'],
 })
