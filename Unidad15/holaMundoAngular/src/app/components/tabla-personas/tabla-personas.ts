@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Para que funcione *ngFor 
 import { RouterLink } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 interface Persona {
   id: number;
@@ -10,9 +15,18 @@ interface Persona {
 
 @Component({
   selector: 'app-tabla-personas',
-  imports: [CommonModule, RouterLink],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSliderModule,
+    MatCardModule,
+    MatButtonModule,
+  ],
   templateUrl: './tabla-personas.html',
-  styleUrl: './tabla-personas.css',
+  styleUrls: ['./tabla-personas.css'],
 })
 export class TablaPersonas {
   personas: Persona[] = [

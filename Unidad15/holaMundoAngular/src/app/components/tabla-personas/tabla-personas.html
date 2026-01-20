@@ -28,3 +28,39 @@
   <button [routerLink]="['/formulario']" style="padding:8px 12px; cursor:pointer;">Abrir Formulario</button>
 </div>
 
+
+<!-- Angular Material components añadidos -->
+<div style="margin-top:24px; display:flex; gap:24px; align-items:center; flex-wrap:wrap;">
+  <!-- Progress spinner -->
+  <div style="display:flex; flex-direction:column; align-items:center;">
+    <label>Loading</label>
+    <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
+  </div>
+
+  <!-- Radio buttons -->
+  <div style="display:flex; flex-direction:column;">
+    <label>Opciones</label>
+    <mat-radio-group aria-label="Seleccionar opción">
+      <mat-radio-button value="op1">Opción 1</mat-radio-button>
+      <mat-radio-button value="op2">Opción 2</mat-radio-button>
+      <mat-radio-button value="op3">Opción 3</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <!-- Slider -->
+  <div style="display:flex; flex-direction:column; width:200px;">
+    <label>Valor</label>
+    <mat-slider min="0" max="100" step="1" value="30"></mat-slider>
+  </div>
+
+  <!-- Card con botones (ejemplo extra) -->
+  <mat-card style="padding:12px;">
+    <mat-card-title>Acciones</mat-card-title>
+    <mat-card-content>
+      <p>Ejemplo de card con botones de Material.</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Cancelar</button>
+      <button mat-raised-button color="primary">Aceptar</button>
+    </mat-card-actions>
+  </mat-card>
