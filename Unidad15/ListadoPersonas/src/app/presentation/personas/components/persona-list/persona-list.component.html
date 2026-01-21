@@ -1,0 +1,10 @@
+<div>
+  <h2>Listado de Personas</h2>
+  <div *ngIf="vm.loading()">Cargando...</div>
+  <div *ngIf="vm.error()" style="color:red">Error: {{ vm.error() }}</div>
+  <ul>
+    <li *ngFor="let p of vm.personas()">
+      {{ p.id }} - {{ p.nombre }} {{ p.apellidos }}
+    </li>
+  </ul>
+</div>

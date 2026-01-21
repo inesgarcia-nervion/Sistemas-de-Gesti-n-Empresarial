@@ -1,0 +1,9 @@
+<div>
+  <h3>Editar Persona</h3>
+  <form [formGroup]="personaForm" (ngSubmit)="onSubmit()">
+    <input formControlName="id" type="hidden">
+    <label>Nombre <input formControlName="nombre"></label>
+    <label>Apellidos <input formControlName="apellidos"></label>
+    <button type="submit">Guardar</button>
+  </form>
+</div>
