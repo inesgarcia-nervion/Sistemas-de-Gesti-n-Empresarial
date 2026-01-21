@@ -63,3 +63,54 @@
 .heroes .name {
   align-self: center;
 }
+
+/* Material examples styling */
+.example-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 420px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.demo-section {
+  margin: 12px 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cdk-visually-hidden {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+/* Smaller tweaks for badges/buttons/icons */
+.demo-section button[matButton], .demo-section button[mat-raised-button] {
+  margin-left: 6px;
+}
+
+mat-icon {
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+/* Make mat-slider thumb visible and reasonable size in examples */
+mat-slider {
+  width: 200px;
+}
+
+/* Ensure mat-form-field elements expand in small containers */
+mat-form-field.example-full-width {
+  display: block;
+}

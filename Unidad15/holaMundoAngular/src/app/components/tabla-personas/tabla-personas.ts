@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Para que funcione *ngFor 
 import { RouterLink } from '@angular/router';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 interface Persona {
   id: number;
@@ -15,15 +19,18 @@ interface Persona {
 
 @Component({
   selector: 'app-tabla-personas',
-  standalone: true,
+  providers: [provideNativeDateAdapter()],        // Importante para que se vean algunos componentes
   imports: [
     CommonModule,
     RouterLink,
     MatProgressSpinnerModule,
     MatRadioModule,
     MatSliderModule,
-    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
     MatButtonModule,
+    MatFormFieldModule, MatInputModule, MatDatepickerModule
   ],
   templateUrl: './tabla-personas.html',
   styleUrls: ['./tabla-personas.css'],

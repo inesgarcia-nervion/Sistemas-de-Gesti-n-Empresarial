@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-//import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-root',
