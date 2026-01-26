@@ -1,1 +1,175 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-600: #1e40af;
+  --radius: 10px;
+  --shadow: 0 6px 18px rgba(20,30,60,0.08);
+  --glass: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+  font-size: 16px;
+}
+
+*{box-sizing:border-box}
+html,body,#root,app-root{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+  color: #0f172a;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding: 1.25rem;
+}
+
+/* App container */
+.app-shell{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.app-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+}
+.brand .logo{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background: var(--accent);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  box-shadow: var(--shadow);
+  font-weight:700;
+  font-size:1.1rem;
+}
+.brand h1{
+  margin:0;
+  font-size:1.15rem;
+  letter-spacing: -0.2px;
+}
+.header-actions{ display:flex; gap:0.5rem; align-items:center; }
+
+/* Controls / Buttons */
+.btn{
+  background: var(--accent);
+  color:#fff;
+  border:none;
+  padding:0.45rem 0.85rem;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+  box-shadow: 0 6px 14px rgba(37,99,235,0.12);
+}
+.btn.ghost{
+  background: transparent;
+  color: var(--accent-600);
+  border: 1px solid rgba(30,64,175,0.08);
+  box-shadow:none;
+}
+
+/* Card layout for personas */
+.grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Responsive: table on larger screens */
+@media(min-width: 880px){
+  .grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card */
+.person-card{
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  padding:0.9rem;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(15,23,42,0.03);
+}
+.avatar{
+  width:64px;
+  height:64px;
+  border-radius:10px;
+  background: #e6eef8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.person-info{
+  flex:1;
+}
+.person-info h3{
+  margin:0; font-size:1rem;
+}
+.person-meta{ color:var(--muted); font-size:0.9rem; margin-top:0.25rem; display:flex; gap:0.75rem; flex-wrap:wrap; }
+
+/* Table */
+.personas-table {
+  width:100%;
+  border-collapse:collapse;
+  margin-top:0.5rem;
+  background:transparent;
+  border-radius:8px;
+  overflow:hidden;
+}
+.personas-table th, .personas-table td{
+  padding:0.65rem 0.85rem;
+  border-bottom:1px solid rgba(15,23,42,0.04);
+  text-align:left;
+}
+.personas-table thead th{
+  background: rgba(0,0,0,0.03);
+  font-weight:600;
+  font-size:0.9rem;
+}
+
+/* Selected */
+.selected{
+  outline: 2px solid rgba(37,99,235,0.12);
+  background: linear-gradient(90deg, rgba(37,99,235,0.03), transparent);
+}
+
+/* Detail panel */
+.detalle{
+  margin-top:1rem;
+  padding:1rem;
+  border-radius:8px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(250,250,255,0.7));
+  border:1px solid rgba(15,23,42,0.03);
+  box-shadow: 0 10px 30px rgba(11,18,32,0.04);
+}
+.json{
+  background:#0b1220;
+  color:#cfe8ff;
+  padding:0.75rem;
+  border-radius:6px;
+  overflow:auto;
+  max-height:220px;
+}
+
+/* utilities */
+.controls{ display:flex; gap:0.75rem; align-items:center; justify-content:flex-start; margin-bottom:0.75rem; }
+.empty{ text-align:center; color:var(--muted); padding:1rem; }

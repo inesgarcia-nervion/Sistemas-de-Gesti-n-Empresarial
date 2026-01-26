@@ -1,24 +1,58 @@
-<div class="persona-lista-container">
-  <h2>Listado de Personas</h2>
-
-  <div *ngIf="vm.cargando" class="loading">
-    Cargando personas...
-  </div>
-  <div *ngIf="vm.error" class="error">
-    {{ vm.error }}
+<div>
+  <div class="controls">
+    <button class="btn" (click)="vm.loadPersonas()">Actualizar</button>
+    <span *ngIf="vm.cargando" class="loading" style="color:var(--accent); margin-left:0.5rem">Cargando...</span>
+    <span *ngIf="vm.error" class="error" style="color:#d32f2f; margin-left:0.5rem">{{ vm.error }}</span>
   </div>
 
-  <ul class="personas-list">
-    <li
-      *ngFor="let persona of vm.personasList"
-      [class.selected]="persona === vm.personaSeleccionada"
-      (click)="seleccionarPersona(persona)"
-    >
-      {{ persona.nombre }} {{ persona.apellido }}
-    </li>
-  </ul>
+  <!-- Table (desktop) -->
+  <table class="personas-table" *ngIf="vm.personasList?.length; else empty">
+    <thead>
+      <tr>
+        <th>ID</th><th>Nombre</th><th>Apellidos</th><th>Edad</th><th>Teléfono</th><th>Dirección</th><th>Departamento</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let persona of vm.personasList" [class.selected]="persona === vm.personaSeleccionada">
+        <td>{{ persona.id }}</td>
+        <td>{{ persona.nombre }}</td>
+        <td>{{ persona.apellidos }}</td>
+        <td>{{ persona.edad }}</td>
+        <td>{{ persona.telefono }}</td>
+        <td>{{ persona.direccion }}</td>
+        <td>{{ persona.idDepartamento ?? '-' }}</td>
+        <td>
+          <button class="btn ghost" (click)="seleccionarPersona(persona)">Seleccionar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-  <button *ngIf="vm.personaSeleccionada" (click)="limpiarSeleccion()">
-    Limpiar selección
-  </button>
+  <ng-template #empty>
+    <div class="empty">No hay personas para mostrar.</div>
+  </ng-template>
+
+  <!-- Detalle lateral/abajo -->
+  <div class="detalle" *ngIf="vm.personaSeleccionada">
+    <h3>Detalle: {{ vm.personaSeleccionada.nombre }} {{ vm.personaSeleccionada.apellidos }}</h3>
+
+    <div style="display:flex; gap:1rem; align-items:flex-start; flex-wrap:wrap;">
+      <div class="avatar" style="width:96px;height:96px;">
+        <img *ngIf="vm.personaSeleccionada.foto" [src]="vm.personaSeleccionada.foto" alt="foto"/>
+        <div *ngIf="!vm.personaSeleccionada.foto" style="font-weight:700;color:var(--accent)">{{ vm.personaSeleccionada.nombre?.charAt(0) || 'P' }}</div>
+      </div>
+
+      <div style="flex:1;">
+        <div><strong>Fecha Nac.:</strong> {{ vm.personaSeleccionada.fechaNacimiento }}</div>
+        <div><strong>Dirección:</strong> {{ vm.personaSeleccionada.direccion }}</div>
+        <div><strong>Teléfono:</strong> {{ vm.personaSeleccionada.telefono }}</div>
+        <div style="margin-top:0.6rem">
+          <button class="btn" (click)="limpiarSeleccion()">Limpiar selección</button>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="margin-top:0.8rem">Objeto completo</h4>
+    <pre class="json">{{ vm.personaSeleccionada | json }}</pre>
+  </div>
 </div>

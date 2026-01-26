@@ -1,12 +1,19 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, DatePipe],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-  protected readonly title = signal('ListadoPersonasAngular');
+  readonly title = signal('ListadoPersonasAngular');
+  today = new Date();
+
+  reloadPage() {
+    window.location.reload();
+  }
 }

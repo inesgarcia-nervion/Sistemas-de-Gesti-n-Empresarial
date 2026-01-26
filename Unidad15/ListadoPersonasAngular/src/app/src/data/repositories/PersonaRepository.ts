@@ -1,13 +1,11 @@
-import { injectable, inject } from 'inversify';
+import { Injectable } from '@angular/core';
 import { ApiUrlDataSource } from '../datasource/ApiUrl';
 import { Persona } from '../../domain/entities/Persona';
 import { Observable } from 'rxjs';
 
-@injectable()
+@Injectable({ providedIn: 'root' })
 export class PersonaRepository {
-  constructor(
-    @inject(ApiUrlDataSource) private dataSource: ApiUrlDataSource
-  ) {}
+  constructor(private dataSource: ApiUrlDataSource) {}
 
   getListaPersonasRep(): Observable<Persona[]> {
     return this.dataSource.getPersonas();

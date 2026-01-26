@@ -61,3 +61,21 @@ button {
 button:hover {
   background: #1565c0;
 }
+
+.personas-table td img.thumb {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.detalle-grid div {
+  padding: 0.25rem 0;
+}
+
+.empty {
+  text-align: center;
+  color: #666;
+  padding: 1rem 0;
+}

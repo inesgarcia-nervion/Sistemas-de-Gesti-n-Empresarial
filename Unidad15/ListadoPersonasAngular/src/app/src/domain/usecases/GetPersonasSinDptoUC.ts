@@ -1,19 +1,15 @@
-import { injectable, inject } from 'inversify';
-import { TYPES } from '../../core/types';
-import { IPersonaRepository } from '../repositories/IPersonaRepository';
+import { Injectable } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+import { PersonaRepository } from '../../data/repositories/PersonaRepository';
 import { Persona } from '../entities/Persona';
 import { IGetPersonaSinDpto } from '../interfaces/IGetPersonaSinDpto';
 
-@injectable()
+@Injectable({ providedIn: 'root' })
 export class GetPersonasSinDptoUC implements IGetPersonaSinDpto {
-  constructor(
-    @inject(TYPES.IPersonaRepository)
-    private personaRepo: IPersonaRepository
-  ) {}
+  constructor(private personaRepo: PersonaRepository) {}
 
   async Execute(): Promise<Persona[]> {
-    const all = await this.personaRepo.getListaPersonasRep().toPromise();
-    return (all ?? [])
-      .map(p => p);
+    const all = await firstValueFrom(this.personaRepo.getListaPersonasRep());
+    return (all ?? []).map(p => p);
   }
 }
