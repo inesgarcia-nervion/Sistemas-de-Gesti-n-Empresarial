@@ -1,11 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PersonaListaVM } from '../../viewmodels/persona-lista.vm';
+import { Persona } from '../../../src/domain/entities/Persona';
 
 @Component({
-  selector: 'app-persona-lista.component',
-  imports: [],
+  selector: 'app-persona-lista',
   templateUrl: './persona-lista.component.html',
-  styleUrl: './persona-lista.component.css',
+  styleUrls: ['./persona-lista.component.scss'],
+  providers: [PersonaListaVM]
 })
-export class PersonaListaComponent {
+export class PersonaListaComponent implements OnInit {
+  constructor(public vm: PersonaListaVM) {}
 
+  ngOnInit(): void {
+    this.vm.loadPersonas();
+  }
+
+  seleccionarPersona(persona: Persona): void {
+    this.vm.seleccionarPersona(persona);
+  }
+
+  limpiarSeleccion(): void {
+    this.vm.limpiarSeleccion();
+  }
 }
