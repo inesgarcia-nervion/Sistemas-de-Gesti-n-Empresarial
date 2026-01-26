@@ -1,0 +1,35 @@
+<div class="tabla-api container">
+  <div class="toolbar">
+    <h2>Listado de personas</h2>
+    <button class="btn" (click)="obtenerPersonas()" [disabled]="loading">Actualizar</button>
+  </div>
+
+  <div *ngIf="loading" class="spinner-wrap">
+    <div class="spinner"></div>
+  </div>
+
+  <table *ngIf="!loading && listadoPersonas?.length; else sinDatos" class="people-table">
+    <thead>
+      <tr>
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Fecha Nac.</th>
+        <th>Departamento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of listadoPersonas; trackBy: trackById">
+        <td class="avatar"><img *ngIf="p.foto" [src]="p.foto" alt="foto"/></td>
+        <td>{{p.nombre}}</td>
+        <td>{{p.apellidos}}</td>
+        <td>{{p.fechaNacimiento | date:'mediumDate'}}</td>
+        <td>{{p.idDepartamento }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #sinDatos>
+    <div class="no-data">No hay personas para mostrar.</div>
+  </ng-template>
+</div>
