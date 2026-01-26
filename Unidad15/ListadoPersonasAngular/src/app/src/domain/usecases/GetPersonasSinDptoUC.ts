@@ -1,16 +1,19 @@
-import { Injectable } from '@angular/core';
-import { PersonaRepository } from '../../../src/data/repositories/PersonaRepository';
-import { Persona } from '../../domain/entities/Persona';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { injectable, inject } from 'inversify';
+import { TYPES } from '../../core/types';
+import { IPersonaRepository } from '../repositories/IPersonaRepository';
+import { Persona } from '../entities/Persona';
+import { IGetPersonaSinDpto } from '../interfaces/IGetPersonaSinDpto';
 
-@Injectable()
-export class GetPersonasSinDptoUC {
-  constructor(private personaRepo: PersonaRepository) {}
+@injectable()
+export class GetPersonasSinDptoUC implements IGetPersonaSinDpto {
+  constructor(
+    @inject(TYPES.IPersonaRepository)
+    private personaRepo: IPersonaRepository
+  ) {}
 
-  Execute(): Observable<Persona[]> {
-    return this.personaRepo.getListaPersonasRep().pipe(
-      map(personas => personas.filter(p => !p.idDepartamento))
-    );
+  async Execute(): Promise<Persona[]> {
+    const all = await this.personaRepo.getListaPersonasRep().toPromise();
+    return (all ?? [])
+      .map(p => p);
   }
 }

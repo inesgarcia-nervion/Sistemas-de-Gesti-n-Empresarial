@@ -1,1 +1,24 @@
-<p>persona-lista.component works!</p>
+<div class="persona-lista-container">
+  <h2>Listado de Personas</h2>
+
+  <div *ngIf="vm.cargando" class="loading">
+    Cargando personas...
+  </div>
+  <div *ngIf="vm.error" class="error">
+    {{ vm.error }}
+  </div>
+
+  <ul class="personas-list">
+    <li
+      *ngFor="let persona of vm.personasList"
+      [class.selected]="persona === vm.personaSeleccionada"
+      (click)="seleccionarPersona(persona)"
+    >
+      {{ persona.nombre }} {{ persona.apellido }}
+    </li>
+  </ul>
+
+  <button *ngIf="vm.personaSeleccionada" (click)="limpiarSeleccion()">
+    Limpiar selección
+  </button>
+</div>

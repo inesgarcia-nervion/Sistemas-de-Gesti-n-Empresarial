@@ -1,57 +1,41 @@
+import { makeAutoObservable, runInAction } from 'mobx';
 import { Injectable } from '@angular/core';
 import { GetPersonasSinDptoUC } from '../../src/domain/usecases/GetPersonasSinDptoUC';
+import type { IGetPersonaSinDpto } from '../../src/domain/interfaces/IGetPersonaSinDpto';
 import { Persona } from '../../src/domain/entities/Persona';
 
 @Injectable()
-export class PersonaListaVM {
-  personasList: Persona[] = [];
-  personaSeleccionada: Persona | null = null;
-  cargando = false;
-  error: string | null = null;
+export default class PersonaListaVM {
+  private _personasList: Persona[] = [];
+  private _personaSeleccionada: Persona | null = null;
+  private _cargando = true;
+  private _error: string | null = null;
 
-  constructor(private getPersonasSinDptoUC: GetPersonasSinDptoUC) {}
-
-  loadPersonas(): void {
-    this.cargando = true;
-    this.error = null;
-    
-    this.getPersonasSinDptoUC.Execute().subscribe({
-      next: (list) => {
-        this.personasList = list;
-        this.cargando = false;
-      },
-      error: (err) => {
-        this.error = err.message || 'Error cargando personas';
-        this.cargando = false;
-      }
-    });
+  constructor(private getPersonasSinDptoUC: GetPersonasSinDptoUC) {
+    makeAutoObservable(this);
+    void this.loadPersonas();
   }
 
-  get personasListGet(): Persona[] {
-    return this.personasList;
+  async loadPersonas(): Promise<void> {
+    try {
+      this._cargando = true;
+      this._error = null;
+      const list = await this.getPersonasSinDptoUC.Execute();
+      runInAction(() => {
+        this._personasList = list;
+        this._cargando = false;
+      });
+    } catch (error) {
+      runInAction(() => {
+        this._error = (error as Error).message || 'Error cargando personas';
+        this._cargando = false;
+      });
+    }
   }
 
-  get cargandoGet(): boolean {
-    return this.cargando;
-  }
-
-  get errorGet(): string | null {
-    return this.error;
-  }
-
-  get personaSeleccionadaGet(): Persona | null {
-    return this.personaSeleccionada;
-  }
-
-  set personaSeleccionadaSet(value: Persona | null) {
-    this.personaSeleccionada = value;
-  }
-
-  seleccionarPersona(persona: Persona): void {
-    this.personaSeleccionada = persona;
-  }
-
-  limpiarSeleccion(): void {
-    this.personaSeleccionada = null;
-  }
+  get cargando(): boolean { return this._cargando; }
+  get error(): string | null { return this._error; }
+  get personaSeleccionada(): Persona | null { return this._personaSeleccionada; }
+  set personaSeleccionada(persona: Persona | null) { this._personaSeleccionada = persona; }
+  get personasList(): Persona[] { return this._personasList; }
 }

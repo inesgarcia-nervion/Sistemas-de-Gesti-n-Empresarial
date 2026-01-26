@@ -1,17 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { injectable, inject } from 'inversify';
+import { ApiUrlDataSource } from '../datasource/ApiUrl';
 import { Persona } from '../../domain/entities/Persona';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@injectable()
 export class PersonaRepository {
-  private apiUrl = 'https://ines-frhqgndaghcnfpds.italynorth-01.azurewebsites.net/api/personas';
-
-  constructor(private http: HttpClient) {}
+  constructor(
+    @inject(ApiUrlDataSource) private dataSource: ApiUrlDataSource
+  ) {}
 
   getListaPersonasRep(): Observable<Persona[]> {
-    return this.http.get<Persona[]>(this.apiUrl);
+    return this.dataSource.getPersonas();
   }
 }

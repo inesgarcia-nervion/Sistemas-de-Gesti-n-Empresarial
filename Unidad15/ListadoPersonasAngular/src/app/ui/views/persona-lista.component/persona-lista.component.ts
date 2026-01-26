@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonaListaVM } from '../../viewmodels/persona-lista.vm';
+import PersonaListaVM from '../../viewmodels/persona-lista.vm';
 import { Persona } from '../../../src/domain/entities/Persona';
 
 @Component({
@@ -16,10 +16,10 @@ export class PersonaListaComponent implements OnInit {
   }
 
   seleccionarPersona(persona: Persona): void {
-    this.vm.seleccionarPersona(persona);
+    this.vm.personaSeleccionada = persona;
   }
 
   limpiarSeleccion(): void {
-    this.vm.limpiarSeleccion();
+    this.vm.personaSeleccionada = null;
   }
 }
