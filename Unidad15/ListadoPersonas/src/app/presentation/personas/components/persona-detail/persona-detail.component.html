@@ -1,8 +1,0 @@
-<div *ngIf="vm.personaSeleccionada() as p">
-  <h3>Detalle Persona</h3>
-  <p>ID: {{ p.id }}</p>
-  <p>Nombre: {{ p.nombre }} {{ p.apellidos }}</p>
-  <p>Edad: {{ p.edad }}</p>
-  <p>Teléfono: {{ p.telefono }}</p>
-</div>
-<div *ngIf="!vm.personaSeleccionada()">No se ha cargado la persona.</div>

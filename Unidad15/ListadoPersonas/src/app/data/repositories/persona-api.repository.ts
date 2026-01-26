@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPersonaRepository } from '../interfaces/repositories/ipersona.repository';
-import { Persona } from '../../domain/entities/persona.model';
+import { Persona } from '../../domain/entities/Persona';
 import { ConnectionService } from '../../core/services/connection.service';
 
 @Injectable()

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IPersonaRepository } from '../interfaces/repositories/ipersona.repository';
-import { Persona } from '../../domain/entities/persona.model';
+import { Persona } from '../../domain/entities/Persona';
 
 @Injectable()
 export class MockPersonaRepository implements IPersonaRepository {

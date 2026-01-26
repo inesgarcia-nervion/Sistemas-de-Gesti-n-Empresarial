@@ -1,7 +1,0 @@
-<div *ngIf="vm.personaSeleccionada() as p">
-  <h3>Eliminar Persona</h3>
-  <p>¿Eliminar a {{ p.nombre }} {{ p.apellidos }}?</p>
-  <button (click)="onConfirm()">Confirmar</button>
-  <a routerLink="/">Cancelar</a>
-</div>
-<div *ngIf="!vm.personaSeleccionada()">No se ha cargado la persona.</div>
